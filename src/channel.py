@@ -37,3 +37,4 @@ class Channel:
             print(f"Subscriber Count: {statistics['subscriberCount']}")
         else:
             print("Channel not found or API request failed.")
+            print("the bug")
