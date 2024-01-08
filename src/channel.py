@@ -4,6 +4,7 @@ import requests
 import json
 from googleapiclient.discovery import build
 
+
 class Channel:
     """Класс для ютуб-канала"""
 
@@ -71,3 +72,85 @@ class Channel:
 
         with open(filename, 'w') as json_file:
             json.dump(data, json_file, indent=2)
+
+    def __str__(self):
+        """Возвращает строковое представление канала."""
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other):
+        """Сложение двух каналов: сумма подписчиков и просмотров."""
+        if not isinstance(other, Channel):
+            raise TypeError("Unsupported operand type. You can only add two Channel instances.")
+
+        total_subscribers = self.subscriber_count + other.subscriber_count
+        total_views = self.view_count + other.view_count
+
+        return total_subscribers + total_views
+
+    def __sub__(self, other):
+        """Вычитание двух каналов: разница подписчиков и просмотров."""
+        if not isinstance(other, Channel):
+            raise TypeError("Unsupported operand type. You can only subtract two Channel instances.")
+
+        diff_subscribers = self.subscriber_count - other.subscriber_count
+        diff_views = self.view_count - other.view_count
+
+        return diff_subscribers + diff_views
+
+    def __eq__(self, other):
+        """Сравнение двух каналов: равны, если id одинаковы."""
+        if not isinstance(other, Channel):
+            raise TypeError("Unsupported operand type. You can only compare two Channel instances.")
+
+        return self.id == other.id
+
+    def __lt__(self, other):
+        """Сравнение двух каналов: меньше, если сумма подписчиков и просмотров меньше."""
+        if not isinstance(other, Channel):
+            raise TypeError("Unsupported operand type. You can only compare two Channel instances.")
+
+        self_total = self.subscriber_count + self.view_count
+        other_total = other.subscriber_count + other.view_count
+
+        return self_total < other_total
+
+    def __le__(self, other):
+        """Сравнение двух каналов: меньше или равно, если сумма подписчиков и просмотров меньше или равна."""
+        if not isinstance(other, Channel):
+            raise TypeError("Unsupported operand type. You can only compare two Channel instances.")
+
+        self_total = self.subscriber_count + self.view_count
+        other_total = other.subscriber_count + other.view_count
+
+        return self_total <= other_total
+
+    def __gt__(self, other):
+        """Сравнение двух каналов: больше, если сумма подписчиков и просмотров больше."""
+        if not isinstance(other, Channel):
+            raise TypeError("Unsupported operand type. You can only compare two Channel instances.")
+
+        self_total = self.subscriber_count + self.view_count
+        other_total = other.subscriber_count + other.view_count
+
+        return self_total > other_total
+
+    def __ge__(self, other):
+        """Сравнение двух каналов: больше или равно, если сумма подписчиков и просмотров больше или равна."""
+        if not isinstance(other, Channel):
+            raise TypeError("Unsupported operand type. You can only compare two Channel instances.")
+
+        self_total = self.subscriber_count + self.view_count
+        other_total = other.subscriber_count + other.view_count
+
+        return self_total >= other_total
+
+class Item:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+    def __repr__(self):
+        return f"Item(name='{self.name}', price={self.price})"
+
+    def __str__(self):
+        return f"{self.name} - ${self.price}"
