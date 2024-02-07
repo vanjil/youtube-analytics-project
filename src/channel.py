@@ -1,9 +1,4 @@
-# src/channel.py
-import os
-import requests
 import json
-from googleapiclient.discovery import build
-
 
 class Channel:
     """Класс для ютуб-канала"""

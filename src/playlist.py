@@ -26,6 +26,7 @@ class PlayList:
         return best_video['url']
 
 
+
     def _get_playlist_info(self):
         title = "Moscow Python Meetup №81"
         url = "https://www.youtube.com/playlist?list=PLv_zOGKKxVpj-n2qLkEM2Hj96LO6uqgQw"
